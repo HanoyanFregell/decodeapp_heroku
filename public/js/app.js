@@ -4,19 +4,19 @@ class App{
   constructor(){
     this.ExpressFeeling = [
       {
-        "id":1,
+        "id":0,
         "name": "Preng",
         "description": "Hi. Crush!",
       
       },
       {
-        "id":2,
+        "id":1,
         "name": "College Life",
         "description": "Makakatapos din ako! tiwala lng :D ajah! ^^ No to love just study :p",
        
       },
       {
-        "id":3,
+        "id":2,
         "name": "Ngitz <3",
         "description": "Because of you I know how to love, I know how to care, and now I know how hurt to be inlove.",
       },
@@ -56,6 +56,24 @@ class App{
         break;
       }
     }   
+    this.ExFeelingList();
+  }
+    updateExFeelingNow(id){
+
+    let ExFeelingDummy = {
+      "id" :  id,
+      "name" : $('#ExFeelingName').val(),
+      "description" : $('#ExFeelingDescription').val()
+    }
+
+    let r = this.ExpressFeeling;
+    for(let i=0;i<r.length;i++){
+      if(r[i].id == id){
+        r[i] = ExFeelingDummy;
+        break;
+      }
+    }
+
     this.ExFeelingList();
   }
 
@@ -116,20 +134,21 @@ class Component extends App{
         <div id="ViewExFeeling"></div>
         <div id="ExFeelingList"></div>
         <div id="createExFeeling"></div>
+        <div id="updateExFeeling"></div>
         
       <footer class="page-footer deep-purple accent-1">
         <div class="container">
           <div class="row">
             
             <div class="col 16 s12">
-              <h5 class="white-text center-align"> ExYoFeHe </h5>
+              <h5 class="white-text center-align"> <B>ExYoFeHe</B> </h5>
               <p class="grey-text text-lighten-4">Shout Out Your Feelings ;)</p>
             </div>
 
               <div class="col l4 offset-l2 s12 ">
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!"onclick="component.homepage()">Home</li>
-                  <li><a class="grey-text text-lighten-3" href="#!"onclick="component.ExFeelingList()">List Express Feelings</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"onclick="component.homepage()"><B>Home</B></li>
+                  <li><a class="grey-text text-lighten-3" href="#!"onclick="component.ExFeelingList()"><B>List Express Feelings</B></a></li>
                 </ul>
               </div>
 
@@ -138,7 +157,7 @@ class Component extends App{
              @BabyFril14 
         </div>
     
-          <div class="footer-copyright">
+          <div class="footer-copyright center-align">
              <ul> ©FrilTumz2016</ul>
           </div>
 
@@ -167,8 +186,8 @@ class Component extends App{
                 <img src="http://4.bp.blogspot.com/-pas82yy5suA/U5XIwU9817I/AAAAAAAAIJA/qvZ98m0_cXU/s1600/heart-smiley.png">
               </div>
                 <div class="card-content center-align">
-                  <p>"ExYoFeHe"</p>
-                  <p>Which means EXPRESS YOUR FEELINGS HERE. This kind of App is created by April Jane Tumala, suggested by Kevin Manliguez.</p>            
+                  <p><B>"ExYoFeHe"</B></p>
+                  <p>Which means <B>EXPRESS YOUR FEELINGS HERE</B>. This kind of App is created by April Jane Tumala, suggested by Kevin Manliguez.</p>            
                 </div>
             </div>
           </div>
@@ -179,10 +198,10 @@ class Component extends App{
                 <img src="http://theresurrectionofhumptydumpty.com/wp-content/uploads/2011/01/sunflowers.jpg">
               </div>
                 <div class="card-content center-align">
-                  <p>You can express your feelings Here. But, no one knows who you are.</p>
+                  <p>You can express your feelings <B>Here</B>. But, no one knows who you are.</p>
                 </div>
                   <div class="card-action">
-                    <h5><a href="#" onclick="component.createExFeeling()"> Post Now !</a></h5>
+                    <h5><a href="#" onclick="component.createExFeeling()"> <B>Post Now !</B></a></h5>
                   </div>
             </div>
           </div>
@@ -240,20 +259,22 @@ class Component extends App{
     let r = this.ExFeelingSearchById(id);
     let html = `
 
-      <div class="row">       
-        <div class="col s12 m6">
+      <div class="row"> 
+      <br> 
+        <div class="col m6">
           <h5 class="center-align">${r.name}</h5>
             <div class="card horizontal small center-align">
               <p>${r.description}</p>
+              <div class="card-action small">
+                <a class="waves-effect btn violet center" onclick="component.updateExFeeling(${r.id})"><i class="material-icons left">update</i><span>Update</span></a>
+                <a class="waves-effect btn blue left" onclick="component.ExFeelingList()"><i class="material-icons left">arrow_back</i><span>Back to List</span></a>
+                <a class="waves-effect btn red right" onclick="component.ExFeelingDelete(${r.id})"><i class="material-icons left">delete</i><span>Delete</span></a>
+              </div>   
             </div>
-              <div class="card-action small">               
-                <span onclick="component.ExFeelingDelete(${r.id})" class="new badge small red" data-badge-caption="">Delete Base</span>
-                <span onclick="component.ExFeelingList()" class="new badge small" data-badge-caption="">Back to List</span>
-              </div>            
         </div>     
       </div>    
         
-               `;
+      `;
 
       this.reRender(`   
       
@@ -261,12 +282,15 @@ class Component extends App{
 
       `,document.getElementById("ViewExFeeling"));
     
-    $('#ViewExFeeling').show();
-    $('#ExFeelingRecent').hide();
-    $('#ExFeelingList').hide();
+    $('#updateExFeeling').hide();
     $('#createExFeeling').hide();
-    $('#ExFeelingHome').hide();
-    $('#homepage').hide();      
+    $('#ExFeelingList').hide();
+    $('#ViewExFeeling').show();
+    $('#ExFeelingRecent').hide();  
+    $('#ExFeelingHome').hide();  
+    $('#homepage').hide();     
+      $('#createExFeeling').hide();
+     
   }
 
     ExFeelingList(){
@@ -329,12 +353,15 @@ class Component extends App{
       
       `,document.getElementById("ExFeelingList"));
     
+    $('#updateExFeeling').hide();
+    $('#createExFeeling').hide();
     $('#ExFeelingList').show();
     $('#ViewExFeeling').hide();
-    $('#ExFeelingRecent').hide();
-    $('#createExFeeling').hide();       
-    $('#ExFeelingHome').hide();
-      $('#homepage').hide();      
+    $('#ExFeelingRecent').hide();  
+    $('#ExFeelingHome').hide();  
+    $('#homepage').hide();     
+      $('#createExFeeling').hide();
+    
   
   }
 
@@ -367,12 +394,15 @@ class Component extends App{
     
       `,document.getElementById("ExFeelingInventory"));
     
+    $('#updateExFeeling').hide();
+    $('#createExFeeling').hide();
     $('#ExFeelingList').show();
     $('#ViewExFeeling').hide();
     $('#ExFeelingRecent').hide();  
-    $('#createExFeeling').hide();
-    $('#ExFeelingHome').hide();   
-      $('#homepage').hide();       
+    $('#ExFeelingHome').hide();  
+    $('#homepage').hide();     
+      $('#createExFeeling').hide();
+   
   
   }
 
@@ -382,27 +412,25 @@ class Component extends App{
         <div class="row">
           <form class="col s12">
             <h5 class="center-align">Create New Post</h5>
-            <button onclick="component.createDesign()" class="btn waves-effect waves-light">Save</button>
+            <div class="card-action small">
+                <a class="waves-effect btn violet center" onclick="component.createDesign()"><i class="material-icons left">save</i><span>save</span></a>
+              </div>            
           <div class="row">
-            <div class="input-field col s6">
-              <input disabled value="${this.ExpressFeeling.length+1}" id="Feeling_id" type="text" class="validate">
+            <div class="input-field col m3">
+              <input disabled value="${this.ExpressFeeling.length+0}" id="Feeling_id" type="text" class="validate">
             </div>
           </div>
             <div class="row">
               <div class="input-field col s6">
                 <input id="ExFeeling_name" type="text" class="validate">
-                <label for="ExFeeling_name">NAME</label>
+                <label for="ExFeeling_name"><B>Code Name</B></label>
               </div>
               <div class="input-field col s6">
                 <input id="ExFeeling_description" type="text" class="validate">
-                <label for="ExFeeling_description">DESCRIPTION</label>
+                <label for="ExFeeling_description"><B>Express Your Feeling Here!</B></label>
               </div>
           </form>
       </div>      
-
-   
-
-         
 
     `;
 
@@ -412,37 +440,69 @@ class Component extends App{
     
       `,document.getElementById("createExFeeling"));
     
-    $('#createExFeeling').show();
+    $('#updateExFeeling').hide();
+    $('#createExFeeling').hide();
     $('#ExFeelingList').hide();
     $('#ViewExFeeling').hide();
     $('#ExFeelingRecent').hide();  
     $('#ExFeelingHome').hide();  
-        $('#homepage').hide();     
-          $('#homepage').hide();       
+    $('#homepage').hide();     
+      $('#createExFeeling').show();
+    
   
+  }
+  updateExFeeling(id){
+    // console.log("id: ",id);    
+    // console.log("name: ",this.ExpressFeeling);
+    let html = `
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="ExFeelingName" type="text" class="validate" value="${this.ExpressFeeling[id].name}">          
+        </div>
+        <div class="input-field col s6">
+          <input id="ExFeelingDescription" type="text" class="validate" value="${this.ExpressFeeling[id].description}">
+        </div>
+      </div>
+      <a onclick="component.updateExFeelingNow(${id})" class="waves-effect blue waves-light btn">Update</a>
+      <hr/>
+    `;  
+    this.reRender(`
+      ${html}
+      `,document.getElementById("updateExFeeling"));   
+
+    $('#updateExFeeling').show();
+    $('#createExFeeling').hide();
+    $('#ExFeelingList').hide();
+    $('#ViewExFeeling').hide();
+    $('#ExFeelingRecent').hide();  
+    $('#ExFeelingHome').hide();  
+    $('#homepage').hide();     
+      $('#createExFeeling').hide();
   }
 
   homepage(){
       let html = `
 
-     
 
-         
+
+
 
     `;
 
     this.reRender(`
-    
+
       ${html}
     
       `,document.getElementById("createExFeeling"));
-    
+
+    $('#updateExFeeling').hide();
     $('#createExFeeling').hide();
     $('#ExFeelingList').hide();
     $('#ViewExFeeling').hide();
     $('#ExFeelingRecent').show();  
     $('#ExFeelingHome').hide();  
-        $('#homepage').hide();      
+    $('#homepage').hide();     
+      $('#createExFeeling').hide();    
   
   }
 
