@@ -9,10 +9,71 @@
   min-height: 100%;
 }
 
+
 .materialize-violet {
   background-color: #8e24aa !important;
 }
+  
+form {
+  background: -webkit-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: -moz-linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  background: linear-gradient(bottom, #CCCCCC, #EEEEEE 175px);
+  margin: auto;
+  position: relative;
+  width: 1300px;
+  height: 600x;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  line-height: 24px;
+  font-weight: bold;
+  color: #09C;
+  text-decoration: none;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #999;
+  border: inset 1px solid #333;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
 
+
+input {
+  width: 375px;
+  display: block;
+  border: 1px solid #999;
+  height: 25px;
+  -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+textarea#feedback {
+  width: 375px;
+  height: 150px;
+  display: block;
+}
+
+button {
+  width: 100px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background: #09C;
+  color: #fff;
+  font-family: Tahoma, Geneva, sans-serif;
+  height: 30px;
+  border-radius: 15px;
+  border: 1p solid #999;
+}
+
+input.button:hover {
+  background: #fff;
+  color: #09C;
+}
+textarea:focus, input:focus {
+  border: 1px solid #09C;
+}
 .materialize-red-text {
   color: #e51c23 !important;
 }
@@ -2164,7 +2225,12 @@ html {
  * Remove default margin.
  */
 body {
-  margin: 0;
+   background:url(../css/img/main.jpg);
+background-repeat:no-repeat;
+background-size:cover;
+background-attachment: fixed;
+background-position: center center;
+  
 }
 
 /* HTML5 display definitions
@@ -2662,7 +2728,8 @@ i.large {
 
 img.responsive-img,
 video.responsive-video {
-  max-width: 100%;
+
+  max-width: 200%;
   height: auto;
 }
 
@@ -4486,12 +4553,13 @@ small {
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #18ffff ;
+  background-color: #00E2FF;
   transition: box-shadow .25s;
   border-radius: 2px;
 }
 
 .card .card-title {
+
   font-size: 24px;
   font-weight: 300;
 }
@@ -4577,6 +4645,7 @@ small {
 }
 
 .card.horizontal .card-stacked .card-content {
+
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -4607,7 +4676,7 @@ small {
 }
 
 .card .card-image .card-title {
-  color: #fff;
+color: #D703C5;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -4615,16 +4684,18 @@ small {
 }
 
 .card .card-content {
+
   padding: 20px;
   border-radius: 0 0 2px 2px;
 }
 
 .card .card-content p {
   margin: 0;
-  color: inherit;
+ 
 }
 
 .card .card-content .card-title {
+
   line-height: 48px;
 }
 
